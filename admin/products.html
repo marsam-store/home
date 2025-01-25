@@ -9,158 +9,169 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/products.css">
 </head>
 <body class="admin-dashboard">
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-header">
-            <img src="https://placehold.co/120x120/D4AF37/1A1A1A?text=مرسم" alt="مرسم" class="logo">
+            <img src="../assets/images/logomarsam.png" alt="مرسم" class="logo">
             <h2>لوحة التحكم</h2>
         </div>
         <nav class="sidebar-nav">
             <ul>
-                <li class="nav-item">
-                    <a href="dashboard.html" class="nav-link">
+                <li>
+                    <a href="dashboard.html">
                         <i class="fas fa-home"></i>
                         <span>الرئيسية</span>
                     </a>
                 </li>
-                <li class="nav-item active">
-                    <a href="products.html" class="nav-link">
+                <li class="active">
+                    <a href="products.html">
                         <i class="fas fa-box"></i>
                         <span>المنتجات</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="categories.html" class="nav-link">
-                        <i class="fas fa-tags"></i>
-                        <span>الفئات</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="orders.html" class="nav-link">
+                <li>
+                    <a href="orders.html">
                         <i class="fas fa-shopping-cart"></i>
                         <span>الطلبات</span>
                     </a>
                 </li>
+                <li>
+                    <a href="customers.html">
+                        <i class="fas fa-users"></i>
+                        <span>العملاء</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="messages.html">
+                        <i class="fas fa-envelope"></i>
+                        <span>الرسائل</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="categories.html">
+                        <i class="fas fa-tags"></i>
+                        <span>التصنيفات</span>
+                    </a>
+                </li>
             </ul>
         </nav>
-        <div class="sidebar-footer">
-            <button id="logoutBtn" class="logout-btn">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>تسجيل الخروج</span>
-            </button>
-        </div>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
+        <!-- Header -->
         <header class="content-header">
-            <h1>إدارة المنتجات</h1>
-            <div class="header-actions">
-                <button id="addProductBtn" class="add-btn">
+            <div class="header-left">
+                <button id="sidebarToggle" class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>إدارة المنتجات</h1>
+            </div>
+            <div class="header-right">
+                <button id="addProductBtn" class="btn-primary">
                     <i class="fas fa-plus"></i>
-                    <span>إضافة منتج</span>
+                    إضافة منتج جديد
                 </button>
             </div>
         </header>
 
-        <!-- Products Table -->
-        <section class="products-section">
-            <div class="table-filters">
+        <!-- Products Grid -->
+        <div class="products-container">
+            <div class="products-filters">
                 <div class="search-box">
                     <input type="text" id="searchProducts" placeholder="البحث عن منتج...">
                     <i class="fas fa-search"></i>
                 </div>
                 <div class="filter-box">
                     <select id="categoryFilter">
-                        <option value="">جميع الفئات</option>
-                        <option value="dresses">فساتين</option>
-                        <option value="abayas">عبايات</option>
-                        <option value="bags">حقائب</option>
-                        <option value="accessories">إكسسوارات</option>
+                        <option value="">جميع التصنيفات</option>
+                    </select>
+                    <select id="statusFilter">
+                        <option value="">جميع الحالات</option>
+                        <option value="active">نشط</option>
+                        <option value="inactive">غير نشط</option>
+                        <option value="outOfStock">نفذ المخزون</option>
                     </select>
                 </div>
             </div>
 
-            <div class="products-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>الصورة</th>
-                            <th>اسم المنتج</th>
-                            <th>الفئة</th>
-                            <th>السعر</th>
-                            <th>المخزون</th>
-                            <th>الحالة</th>
-                            <th>الإجراءات</th>
-                        </tr>
-                    </thead>
-                    <tbody id="productsTableBody">
-                        <!-- Products will be loaded dynamically -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Add/Edit Product Modal -->
-        <div id="productModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>إضافة منتج جديد</h2>
-                    <button class="close-modal">&times;</button>
-                </div>
-                <form id="productForm" class="product-form">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="productName">اسم المنتج</label>
-                            <input type="text" id="productName" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="productCategory">الفئة</label>
-                            <select id="productCategory" name="category" required>
-                                <option value="dresses">فساتين</option>
-                                <option value="abayas">عبايات</option>
-                                <option value="bags">حقائب</option>
-                                <option value="accessories">إكسسوارات</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="productPrice">السعر (د.ج)</label>
-                            <input type="number" id="productPrice" name="price" min="0" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="productStock">المخزون</label>
-                            <input type="number" id="productStock" name="stock" min="0" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="productDescription">وصف المنتج</label>
-                        <textarea id="productDescription" name="description" rows="4" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="productImages">صور المنتج</label>
-                        <div class="image-upload-container">
-                            <input type="file" id="productImages" name="images" multiple accept="image/*">
-                            <div class="upload-placeholder">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <span>اسحب الصور هنا أو انقر للاختيار</span>
-                            </div>
-                        </div>
-                        <div id="imagePreview" class="image-preview"></div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="save-btn">حفظ المنتج</button>
-                        <button type="button" class="cancel-btn">إلغاء</button>
-                    </div>
-                </form>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here dynamically -->
             </div>
         </div>
     </main>
 
-    <script src="js/dashboard.js"></script>
-    <script src="js/products.js"></script>
+    <!-- Add/Edit Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">إضافة منتج جديد</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="productForm" class="product-form">
+                <div class="form-group">
+                    <label for="productName">اسم المنتج</label>
+                    <input type="text" id="productName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">وصف المنتج</label>
+                    <textarea id="productDescription" name="description" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productPrice">السعر</label>
+                        <input type="number" id="productPrice" name="price" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productStock">المخزون</label>
+                        <input type="number" id="productStock" name="stock" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productCategory">التصنيف</label>
+                    <select id="productCategory" name="category" required>
+                        <!-- Categories will be loaded dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="productImages">صور المنتج</label>
+                    <div class="image-upload-container">
+                        <div class="image-preview" id="imagePreview"></div>
+                        <input type="file" id="productImages" name="images" multiple accept="image/*">
+                        <label for="productImages" class="upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            اختر الصور
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productFeatures">مميزات المنتج</label>
+                    <div id="featuresContainer">
+                        <div class="feature-input">
+                            <input type="text" name="features[]" placeholder="أضف ميزة">
+                            <button type="button" class="btn-icon remove-feature">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" id="addFeature" class="btn-secondary">
+                        <i class="fas fa-plus"></i>
+                        إضافة ميزة
+                    </button>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">حفظ المنتج</button>
+                    <button type="button" class="btn-secondary close-modal">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/dataService.js"></script>
+    <script type="module" src="js/products.js"></script>
 </body>
 </html> 

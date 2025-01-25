@@ -3,217 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المنتجات | مرسم</title>
-    <link rel="icon" type="image/png" href="assets/images/logomarsam.png">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/products.css">
+    <title>إدارة المنتجات | لوحة التحكم</title>
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/products.css">
 </head>
-<body>
-    <!-- Header -->
-    <header class="main-header">
-        <nav class="nav-container">
-            <a href="index.html" class="logo">
-                <img src="assets/images/logomarsam.png" alt="مرسم">
-            </a>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="index.html">الرئيسية</a></li>
-                    <li><a href="products.html" class="active">المنتجات</a></li>
-                    <li><a href="#categories">الفئات</a></li>
-                    <li><a href="#contact">اتصل بنا</a></li>
-                </ul>
-            </div>
-            <div class="user-actions">
-                <div class="cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
-                </div>
-                <button class="mobile-menu-btn">
+<body class="admin-dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="../assets/images/logomarsam.png" alt="مرسم" class="logo">
+            <h2>لوحة التحكم</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-home"></i>
+                        <span>الرئيسية</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="products.html">
+                        <i class="fas fa-box"></i>
+                        <span>المنتجات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="orders.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>الطلبات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="customers.html">
+                        <i class="fas fa-users"></i>
+                        <span>العملاء</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="messages.html">
+                        <i class="fas fa-envelope"></i>
+                        <span>الرسائل</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="categories.html">
+                        <i class="fas fa-tags"></i>
+                        <span>التصنيفات</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="content-header">
+            <div class="header-left">
+                <button id="sidebarToggle" class="sidebar-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
+                <h1>إدارة المنتجات</h1>
             </div>
-        </nav>
-    </header>
-
-    <!-- Products Page -->
-    <main class="products-page">
-        <!-- Products Header -->
-        <div class="products-header">
-            <div class="header-content">
-                <h1>منتجاتنا</h1>
-                <p class="products-count">عرض <span>6</span> منتجات</p>
-            </div>
-            <div class="products-actions">
-                <button class="filter-btn">
-                    <i class="fas fa-filter"></i>
-                    تصفية المنتجات
+            <div class="header-right">
+                <button id="addProductBtn" class="btn-primary">
+                    <i class="fas fa-plus"></i>
+                    إضافة منتج جديد
                 </button>
-                <select class="sort-select">
-                    <option value="">ترتيب حسب</option>
-                    <option value="price-asc">السعر: من الأقل إلى الأعلى</option>
-                    <option value="price-desc">السعر: من الأعلى إلى الأقل</option>
-                    <option value="name">الاسم: أ-ي</option>
-                </select>
             </div>
-        </div>
+        </header>
 
         <!-- Products Grid -->
-        <div class="products-grid">
-            <!-- Products will be dynamically added here -->
-        </div>
-
-        <!-- Pagination -->
-        <div class="pagination">
-            <button class="prev-page" disabled>
-                <i class="fas fa-chevron-right"></i>
-            </button>
-            <div class="page-numbers">
-                <span class="active">1</span>
-                <span>2</span>
-                <span>3</span>
-            </div>
-            <button class="next-page">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-        </div>
-
-        <!-- Filter Sidebar -->
-        <div class="filter-sidebar">
-            <div class="filter-header">
-                <h3>تصفية المنتجات</h3>
-                <button class="close-filter">
-                    <i class="fas fa-times"></i>
-                </button>
+        <div class="products-container">
+            <div class="products-filters">
+                <div class="search-box">
+                    <input type="text" id="searchProducts" placeholder="البحث عن منتج...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="filter-box">
+                    <select id="categoryFilter">
+                        <option value="">جميع التصنيفات</option>
+                    </select>
+                    <select id="statusFilter">
+                        <option value="">جميع الحالات</option>
+                        <option value="active">نشط</option>
+                        <option value="inactive">غير نشط</option>
+                        <option value="outOfStock">نفذ المخزون</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="filter-content">
-                <!-- Categories -->
-                <div class="filter-section">
-                    <h4>الفئات</h4>
-                    <div class="filter-options">
-                        <label class="filter-option">
-                            <input type="checkbox" value="dresses">
-                            <span>فساتين</span>
-                        </label>
-                        <label class="filter-option">
-                            <input type="checkbox" value="bags">
-                            <span>حقائب</span>
-                        </label>
-                        <label class="filter-option">
-                            <input type="checkbox" value="accessories">
-                            <span>إكسسوارات</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Price Range -->
-                <div class="filter-section">
-                    <h4>نطاق السعر</h4>
-                    <div class="price-range">
-                        <input type="number" id="min-price" placeholder="الحد الأدنى">
-                        <span>-</span>
-                        <input type="number" id="max-price" placeholder="الحد الأقصى">
-                    </div>
-                </div>
-
-                <!-- Colors -->
-                <div class="filter-section">
-                    <h4>الألوان</h4>
-                    <div class="color-options">
-                        <label class="color-option">
-                            <input type="checkbox" value="black">
-                            <span class="color-swatch" style="background-color: #000"></span>
-                            <span>أسود</span>
-                        </label>
-                        <label class="color-option">
-                            <input type="checkbox" value="gold">
-                            <span class="color-swatch" style="background-color: #D4AF37"></span>
-                            <span>ذهبي</span>
-                        </label>
-                        <label class="color-option">
-                            <input type="checkbox" value="white">
-                            <span class="color-swatch" style="background-color: #FFF"></span>
-                            <span>أبيض</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Filter Actions -->
-                <div class="filter-actions">
-                    <button class="apply-filter">تطبيق</button>
-                    <button class="reset-filter">إعادة تعيين</button>
-                </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here dynamically -->
             </div>
         </div>
     </main>
 
-    <!-- Quick View Modal -->
-    <div class="modal" id="quickViewModal">
+    <!-- Add/Edit Product Modal -->
+    <div id="productModal" class="modal">
         <div class="modal-content">
-            <button class="close-modal">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="product-quick-view">
-                <!-- Quick view content will be dynamically added here -->
+            <div class="modal-header">
+                <h2 id="modalTitle">إضافة منتج جديد</h2>
+                <button class="close-modal">&times;</button>
             </div>
-        </div>
-    </div>
-
-    <!-- Cart Modal -->
-    <div class="cart-modal">
-        <div class="cart-header">
-            <h3>سلة التسوق</h3>
-            <span class="cart-count">0</span>
-        </div>
-        <div class="cart-items">
-            <!-- Cart items will be dynamically added here -->
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                المجموع: <span>0</span> د.ج
-            </div>
-            <a href="checkout.html" class="btn btn-primary">إتمام الشراء</a>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>مرسم</h3>
-                <p>متجرك المفضل للأزياء العصرية</p>
-            </div>
-            <div class="footer-section">
-                <h3>روابط سريعة</h3>
-                <ul>
-                    <li><a href="about.html">من نحن</a></li>
-                    <li><a href="shipping.html">سياسة الشحن</a></li>
-                    <li><a href="returns.html">سياسة الإرجاع</a></li>
-                    <li><a href="privacy.html">سياسة الخصوصية</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>تواصل معنا</h3>
-                <div class="social-links">
-                    <a href="https://fb.com/profile.php?id=100092566596830" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://instagram.com/marsam05/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <form id="productForm" class="product-form">
+                <div class="form-group">
+                    <label for="productName">اسم المنتج</label>
+                    <input type="text" id="productName" name="name" required>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="productDescription">وصف المنتج</label>
+                    <textarea id="productDescription" name="description" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productPrice">السعر</label>
+                        <input type="number" id="productPrice" name="price" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productStock">المخزون</label>
+                        <input type="number" id="productStock" name="stock" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productCategory">التصنيف</label>
+                    <select id="productCategory" name="category" required>
+                        <!-- Categories will be loaded dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="productImages">صور المنتج</label>
+                    <div class="image-upload-container">
+                        <div class="image-preview" id="imagePreview"></div>
+                        <input type="file" id="productImages" name="images" multiple accept="image/*">
+                        <label for="productImages" class="upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            اختر الصور
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productFeatures">مميزات المنتج</label>
+                    <div id="featuresContainer">
+                        <div class="feature-input">
+                            <input type="text" name="features[]" placeholder="أضف ميزة">
+                            <button type="button" class="btn-icon remove-feature">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" id="addFeature" class="btn-secondary">
+                        <i class="fas fa-plus"></i>
+                        إضافة ميزة
+                    </button>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">حفظ المنتج</button>
+                    <button type="button" class="btn-secondary close-modal">إلغاء</button>
+                </div>
+            </form>
         </div>
-        <div class="footer-bottom">
-            <p>© 2025 مرسم. جميع الحقوق محفوظة</p>
-        </div>
-    </footer>
+    </div>
 
-    <!-- JavaScript -->
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/cart.js"></script>
-    <script src="assets/js/products.js"></script>
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/dataService.js"></script>
+    <script type="module" src="js/products.js"></script>
 </body>
 </html> 

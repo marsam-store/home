@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | مرسم</title>
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="admin-dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="https://placehold.co/120x120/D4AF37/1A1A1A?text=مرسم" alt="مرسم" class="logo">
+            <h2>لوحة التحكم</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="nav-item active">
+                    <a href="dashboard.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>الرئيسية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="products.html" class="nav-link">
+                        <i class="fas fa-box"></i>
+                        <span>المنتجات</span>
+                        <span class="nav-badge">0</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="categories.html" class="nav-link">
+                        <i class="fas fa-tags"></i>
+                        <span>الفئات</span>
+                        <span class="nav-badge">4</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="orders.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>الطلبات</span>
+                        <span class="nav-badge pending">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <button id="logoutBtn" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>تسجيل الخروج</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="content-header">
+            <div class="header-left">
+                <button id="sidebarToggle" class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>لوحة التحكم</h1>
+            </div>
+            <div class="header-actions">
+                <div class="admin-notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+                <a href="../index.html" target="_blank" class="view-site">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>عرض الموقع</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <button class="action-btn" onclick="location.href='products.html#add'">
+                <i class="fas fa-plus"></i>
+                <span>إضافة منتج</span>
+            </button>
+            <button class="action-btn" onclick="location.href='orders.html#pending'">
+                <i class="fas fa-clock"></i>
+                <span>الطلبات المعلقة</span>
+            </button>
+            <button class="action-btn" onclick="location.href='categories.html#add'">
+                <i class="fas fa-folder-plus"></i>
+                <span>إضافة فئة</span>
+            </button>
+        </section>
+
+        <!-- Dashboard Stats -->
+        <section class="dashboard-stats">
+            <div class="stat-card">
+                <div class="stat-icon products">
+                    <i class="fas fa-box"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>المنتجات</h3>
+                    <p class="stat-value">0</p>
+                    <p class="stat-change increase">+0% من الشهر الماضي</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon orders">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>الطلبات</h3>
+                    <p class="stat-value">0</p>
+                    <p class="stat-change">0 طلبات اليوم</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon categories">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>الفئات</h3>
+                    <p class="stat-value">4</p>
+                    <p class="stat-change">جميع الفئات نشطة</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon revenue">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>الإيرادات</h3>
+                    <p class="stat-value">0 د.ج</p>
+                    <p class="stat-change">هذا الشهر</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="dashboard-charts">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>إحصائيات المبيعات</h3>
+                    <select id="salesPeriod">
+                        <option value="week">آخر أسبوع</option>
+                        <option value="month">آخر شهر</option>
+                        <option value="year">آخر سنة</option>
+                    </select>
+                </div>
+                <canvas id="salesChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>المنتجات الأكثر مبيعاً</h3>
+                </div>
+                <canvas id="productsChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Recent Orders -->
+        <section class="recent-orders">
+            <div class="section-header">
+                <h2>آخر الطلبات</h2>
+                <div class="header-actions">
+                    <select id="orderStatus">
+                        <option value="all">جميع الطلبات</option>
+                        <option value="pending">قيد الانتظار</option>
+                        <option value="processing">قيد المعالجة</option>
+                        <option value="shipped">تم الشحن</option>
+                        <option value="delivered">تم التوصيل</option>
+                    </select>
+                    <a href="orders.html" class="view-all">عرض الكل</a>
+                </div>
+            </div>
+            <div class="orders-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>رقم الطلب</th>
+                            <th>العميل</th>
+                            <th>المنتجات</th>
+                            <th>المبلغ</th>
+                            <th>الحالة</th>
+                            <th>التاريخ</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Orders will be loaded dynamically -->
+                        <tr class="no-orders">
+                            <td colspan="7">لا توجد طلبات حالياً</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel">
+        <div class="notification-header">
+            <h3>الإشعارات</h3>
+            <button class="close-notifications">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-list">
+            <!-- Notifications will be loaded dynamically -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/dataService.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html> 

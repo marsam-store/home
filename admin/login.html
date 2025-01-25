@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول | لوحة التحكم</title>
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="admin-login">
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <img src="../assets/images/logomarsam.png" alt="مرسم" class="logo">
+                <h1>لوحة التحكم</h1>
+                <p>تسجيل الدخول باستخدام GitHub</p>
+            </div>
+            <div class="github-instructions">
+                <h3>تعليمات الإعداد:</h3>
+                <ol>
+                    <li>قم بإنشاء حساب على <a href="https://github.com" target="_blank">GitHub</a> إذا لم يكن لديك حساب.</li>
+                    <li>انتقل إلى <a href="https://github.com/settings/tokens" target="_blank">إعدادات الرمز المميز</a>.</li>
+                    <li>انقر على "Generate new token (classic)".</li>
+                    <li>أعط الرمز المميز الصلاحيات التالية:
+                        <ul>
+                            <li>repo (كل الصلاحيات)</li>
+                            <li>user (كل الصلاحيات)</li>
+                        </ul>
+                    </li>
+                    <li>انسخ الرمز المميز واستخدمه ككلمة مرور للدخول.</li>
+                </ol>
+            </div>
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="username">اسم المستخدم في GitHub</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">الرمز المميز (Token)</label>
+                    <div class="password-input">
+                        <input type="password" id="password" name="password" required>
+                        <button type="button" class="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group remember-me">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember" id="remember">
+                        <span>تذكرني</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="login-btn">تسجيل الدخول</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/login.js"></script>
+    <script type="module" src="js/initRepo.js"></script>
+</body>
+</html> 

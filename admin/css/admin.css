@@ -1,0 +1,338 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--main-font);
+    background: var(--admin-bg);
+    color: var(--admin-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background: var(--admin-dark);
+    border-left: 1px solid var(--admin-border);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-normal);
+    z-index: var(--z-fixed);
+}
+
+.sidebar-header {
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.sidebar-header .logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
+}
+
+.sidebar-header h2 {
+    color: var(--admin-light);
+    font-size: 1.2rem;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 1.5rem 0;
+    overflow-y: auto;
+}
+
+.nav-item {
+    list-style: none;
+    margin-bottom: 0.5rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    color: var(--admin-text);
+    text-decoration: none;
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+.nav-link i {
+    width: 24px;
+    text-align: center;
+    margin-left: 1rem;
+    font-size: 1.1rem;
+}
+
+.nav-link span {
+    flex: 1;
+}
+
+.nav-badge {
+    background: var(--admin-gold);
+    color: var(--admin-dark);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.nav-badge.pending {
+    background: var(--status-pending);
+    color: var(--admin-light);
+}
+
+.nav-item.active .nav-link,
+.nav-link:hover {
+    color: var(--admin-light);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active .nav-link::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 20px;
+    background: var(--admin-gold);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--admin-border);
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.75rem;
+    background: transparent;
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius-md);
+    color: var(--admin-text);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.logout-btn i {
+    margin-left: 0.5rem;
+}
+
+.logout-btn:hover {
+    background: rgba(244, 67, 54, 0.1);
+    border-color: var(--admin-error);
+    color: var(--admin-error);
+}
+
+/* Main Content */
+.main-content {
+    margin-right: 280px;
+    padding: 2rem;
+    min-height: 100vh;
+    transition: var(--transition-normal);
+}
+
+/* Header */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--admin-light);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.content-header h1 {
+    color: var(--admin-light);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.admin-notifications {
+    position: relative;
+}
+
+.notification-btn {
+    background: none;
+    border: none;
+    color: var(--admin-text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: var(--transition-fast);
+}
+
+.notification-btn:hover {
+    color: var(--admin-light);
+}
+
+.notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--admin-error);
+    color: var(--admin-light);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.4rem;
+    border-radius: var(--radius-full);
+    min-width: 18px;
+    text-align: center;
+}
+
+.view-site {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--admin-dark);
+    color: var(--admin-light);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.view-site:hover {
+    background: var(--admin-gold);
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-badge.pending {
+    background: rgba(255, 152, 0, 0.1);
+    color: var(--status-pending);
+}
+
+.status-badge.processing {
+    background: rgba(33, 150, 243, 0.1);
+    color: var(--status-processing);
+}
+
+.status-badge.shipped {
+    background: rgba(156, 39, 176, 0.1);
+    color: var(--status-shipped);
+}
+
+.status-badge.delivered {
+    background: rgba(76, 175, 80, 0.1);
+    color: var(--status-delivered);
+}
+
+.status-badge.cancelled {
+    background: rgba(244, 67, 54, 0.1);
+    color: var(--status-cancelled);
+}
+
+/* Action Icons */
+.action-icon {
+    background: none;
+    border: none;
+    color: var(--admin-text);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: var(--transition-fast);
+}
+
+.action-icon:hover {
+    color: var(--admin-gold);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .sidebar {
+        width: 240px;
+    }
+    
+    .main-content {
+        margin-right: 240px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .sidebar {
+        transform: translateX(100%);
+    }
+    
+    .sidebar-collapsed .sidebar {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-right: 0;
+    }
+    
+    .sidebar-toggle {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-content {
+        padding: 1.5rem;
+    }
+    
+    .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .content-header h1 {
+        font-size: 1.2rem;
+    }
+    
+    .view-site span {
+        display: none;
+    }
+} 

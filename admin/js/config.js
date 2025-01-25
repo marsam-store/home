@@ -4,6 +4,7 @@ const config = {
     GITHUB_REPO: 'home',
     GITHUB_BRANCH: 'main',
     API_BASE_URL: 'https://api.github.com',
+    SITE_URL: 'https://marsam-store.github.io/home',
     
     // Data file paths in the repository
     DATA_FILES: {
